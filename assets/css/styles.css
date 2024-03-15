@@ -15,16 +15,16 @@ body {
 
 .carta {
   /* position: relative; */
-  width: 35%;
+  width: 15%;
   /* max-width: 120px;
   min-width: 100px; */
   /* left: 20dvw; */
   margin-left: -55px;
   /* border: 3px solid black; */
-  border-radius: 30px;
+  border-radius: 1rem;
 }
 
 #jugador-cartas,
 #computadora-cartas {
-  height: 220px;
+  height: 24dvh;
 }
