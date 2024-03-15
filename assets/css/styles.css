@@ -1,0 +1,17 @@
+html,
+body{
+  margin:0;
+  background-color: #2f4f30;
+  color: white;
+}
+
+
+
+.titulo{
+  background-color: black;  
+  text-align: center;
+  padding: 2dvh;
+  font-weight: 900;
+  font-size:5dvw;
+}
+
