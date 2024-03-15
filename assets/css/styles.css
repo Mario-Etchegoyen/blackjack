@@ -15,9 +15,9 @@ body {
 
 .carta {
   /* position: relative; */
-  width: 15dvw;
-  max-width: 120px;
-  min-width: 100px;
+  width: 100px;
+  /* max-width: 120px;
+  min-width: 100px; */
   /* left: 20dvw; */
   margin-left: -55px;
   border: 2px solid black;
