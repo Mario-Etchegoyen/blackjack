@@ -1,17 +1,30 @@
 html,
-body{
-  margin:0;
+body {
+  margin: 0px;
   background-color: #2f4f30;
   color: white;
 }
 
 
-
-.titulo{
-  background-color: black;  
+.titulo {
   text-align: center;
-  padding: 2dvh;
-  font-weight: 900;
-  font-size:5dvw;
+  background-color: black;
+  padding: 2dvw;
+  font-size: 4dvw;
 }
 
+.carta {
+  /* position: relative; */
+  width: 15dvw;
+  max-width: 120px;
+  min-width: 100px;
+  /* left: 20dvw; */
+  margin-left: -55px;
+  border: 2px solid black;
+  border-radius: .95rem;
+}
+
+#jugador-cartas,
+#computadora-cartas {
+  height: 220px;
+}
