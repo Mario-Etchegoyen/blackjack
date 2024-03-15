@@ -74,3 +74,18 @@ const pedirCarta = () => {
 // pedirCarta()
 
 // ---------------------------- darle un valor a la carta
+const valorCarta = (carta => {
+  let puntos=0;
+  const valor = carta.substring(0, carta.length - 1) // carta viene con "10d" y lo convierte en un arreglo para guardar hasta el indice indicado
+  console.log( ((isNaN(valor)) ?
+    (valor === "A") ? puntos = puntos + 11 : puntos = puntos + 10
+    : puntos = parseInt(valor, 10) + puntos));
+  console.log("carta:",carta,"puntaje:", puntos)
+
+
+})
+
+valorCarta(pedirCarta())
+valorCarta(pedirCarta())
+valorCarta(pedirCarta())
+valorCarta(pedirCarta())
