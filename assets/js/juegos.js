@@ -15,6 +15,8 @@ let deck = [];
 const tipos = ["C", "H", "S", "D"]
 const especiales = ["A", "J", "Q", "K"]
 
+
+// ----------------------------------------- crear y mezclar mazo de cartas
 const crearDeck = () => {
   // ---------------------- criterio curso
   // for (let i = 2; i <= 10; i++) {
@@ -49,3 +51,26 @@ const crearDeck = () => {
 
 console.log(`mazo mezclado: ${crearDeck(deck)}. Total ${deck.length} cartas`)
 
+// ---------------------------------------- para tomar una carta
+
+const pedirCarta = () => {
+  if (deck.length > 0) {
+    cartaPedida = deck.pop()
+    // console.log("mazo:", deck, "carta pedida:", cartaPedida)
+    return cartaPedida
+  } else {
+    console.log("El mazo esta vacio")
+  }
+
+}
+// console.log((deck = [3, 4])) // de ejemplo para ver resultados de la funcion pedir Carta
+
+// console.log(pedirCarta())
+// console.log(pedirCarta())
+// console.log(pedirCarta())
+
+// pedirCarta()
+// pedirCarta()
+// pedirCarta()
+
+// ---------------------------- darle un valor a la carta
