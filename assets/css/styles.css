@@ -18,6 +18,7 @@ body {
   width: 25%;
   max-width: 120px;
   min-width: 100px;
+  min-height: 16dvh;
   /* left: 20dvw; */
   margin-left: -55px;
   /* border: 3px solid black; */
@@ -36,5 +37,5 @@ body {
   padding: 3dvw;
   background-image: url(../imagenes/Imagen5.png);
   background-size:cover;
-  /* height: 20dvh */
-}}
+  min-height: 20dvh;
+}

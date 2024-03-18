@@ -14,17 +14,22 @@
 let deck = [];
 const tipos = ["C", "H", "S", "D"]
 const especiales = ["A", "J", "Q", "K"]
-let ptsAcum=0,
-    ptsComputadora=0;
+let ptsAcum = 0,
+  ptsComputadora = 0;
 
 
 // referencias HTML
 
-const btnNuevo=document.querySelector("#btnNuevo"),
-      btnPedir = document.querySelector("#btnPedir"),
-      btnDetener = document.querySelector("#btnDetener");
+const btnNuevo = document.querySelector("#btnNuevo"),
+  btnPedir = document.querySelector("#btnPedir"),
+  btnDetener = document.querySelector("#btnDetener");
 
 const smalls = document.querySelectorAll("small");
+
+const divJugadorCartas = document.querySelector("#jugador-cartas"),
+  divCompuCartas = document.querySelector("#computadora-cartas");
+
+
 
 
 
@@ -41,10 +46,10 @@ const crearDeck = () => {
   }
 
   deck = _.shuffle(deck) // mezcla las cartas  
+
   return deck
 }
 
-// console.log(`mazo mezclado: ${crearDeck(deck)}. Total ${deck.length} cartas`)
 
 // ---------------------------------------- para tomar una carta
 
@@ -70,12 +75,17 @@ const valorCarta = (carta) => {
 
 const sumaPuntos = (puntaje = 0) => {
   ptsAcum = ptsAcum + puntaje;
-  console.log(`Carta: ${cartaPedida}, puntaje: ${puntaje}, Punt Acum: ${ptsAcum}`) // devuelve string
   return ptsAcum
 }
 
 const verificacion = (ptsAcum) => {
-  ptsAcum <= 21 ? console.log("pedis Otra?") : smalls[0].innerText ="PERDISTE!"
+  if (ptsAcum > 21) {
+    ((btnPedir.disabled = true),
+      btnDetener.disabled = true,
+      turnoCompu(0),
+      (smalls[0].innerText = "Te Pasaste!"))
+  }
+
 
 }
 
@@ -86,21 +96,62 @@ const verificacion = (ptsAcum) => {
 // verificacion(sumaPuntos(valorCarta(pedirCarta())))
 // verificacion(sumaPuntos(valorCarta(pedirCarta())))
 
+// ----------- TURNO COMPU --------------------
+
+const turnoCompu = (pjeMinimo) => {
+  ptsAcum = 0;
+  do {
+    const carta = pedirCarta();
+    const puntajeCarta = valorCarta(carta);
+    const ptsAcum = sumaPuntos(puntajeCarta);
+    smalls[1].innerText = ptsAcum;
+    
+    const imgCarta = document.createElement("img");
+    imgCarta.src = `./assets/imagenes/cartas/${carta}.png`;
+    divCompuCartas.append(imgCarta);
+    imgCarta.classList.add("carta");
+
+
+
+  } while (ptsAcum < pjeMinimo && ptsAcum < 21);
+
+  ptsAcum <= 21 ? smalls[1].innerText = "Gana COMPU!"
+    : smalls[1].innerText = "Gana Jugador 1";
+  // btnDetener.disabled=true;
+
+}
+
+
 // ----------- eventos ---------------------------
 btnPedir.addEventListener("click", () => {
-  const carta=pedirCarta();
-  // console.log(carta);
-  const puntajeCarta=valorCarta(carta);
-  // console.log(puntajeCarta);
-  const ptsAcum=sumaPuntos(puntajeCarta);
-  smalls[0].innerText=ptsAcum;
-  verificacion(ptsAcum);
-} )
+  const carta = pedirCarta();
+  const puntajeCarta = valorCarta(carta);
+  const ptsAcum = sumaPuntos(puntajeCarta);
 
-btnNuevo.addEventListener("click", () => {
-  deck=[];
-  smalls[0].innerText =0;
-  ptsAcum=0;
-  console.log(crearDeck())
+
+
+  const imgCarta = document.createElement("img");
+  imgCarta.src = `./assets/imagenes/cartas/${carta}.png`;
+  divJugadorCartas.append(imgCarta);
+  imgCarta.classList.add("carta");
+  smalls[0].innerText = ptsAcum;
+
+  verificacion(ptsAcum);
+
 })
 
+btnNuevo.addEventListener("click", () => {
+  deck = [];
+  smalls[0].innerText = 0;
+  smalls[1].innerText = 0;
+  ptsAcum = 0;
+  btnPedir.disabled = false;
+  btnDetener.disabled = false;
+  crearDeck()
+})
+
+btnDetener.addEventListener("click", () => {
+  btnDetener.disabled = true;
+  btnPedir.disabled = true;
+  turnoCompu(ptsAcum);
+})
