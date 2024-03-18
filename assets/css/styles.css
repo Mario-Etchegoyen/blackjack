@@ -26,14 +26,15 @@ body {
 
 #jugador-cartas,
 #computadora-cartas {
-  display:flex;
+  display: flex;
   justify-content: center;
-  align-items:center;
+  align-items: center;
   width: 60%;
   min-width: 350px;
-  height: fit-content;
-  margin-left: 20%;
-  padding:3dvw;
-  background-image: url(../imagenes/fondo-pano.png);
+  /* height: fit-content; */
+  margin: 2dvh 20dvw;
+  padding: 3dvw;
+  background-image: url(../imagenes/Imagen5.png);
+  background-size:cover;
   /* height: 20dvh */
-}
+}}
