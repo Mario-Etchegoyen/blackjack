@@ -14,8 +14,9 @@ body {
 }
 
 .carta {
-  width: 6dvw;
-  min-width:80px;
+  width: 5.8dvw;
+  min-width:75px;
+  height:auto;
   max-height: 26dvh;
   margin-left: -3dvw;
   border-radius: 0.4rem;
@@ -26,7 +27,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 60%;
+  width: 50%;
   min-width: 350px;
   margin: 2dvh auto;
   padding: 1dvw;
