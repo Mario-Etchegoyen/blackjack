@@ -94,11 +94,15 @@ const turnoCompu = (pjeMinimo) => {
     const carta = pedirCarta();
     const puntajeCarta = valorCarta(carta);
     const ptsAcum = sumaPuntos(puntajeCarta);
-    smalls[1].innerText = ptsAcum;
+
+
     const imgCarta = document.createElement("img");
     imgCarta.src = `./assets/imagenes/cartas/${carta}.png`;
     divCompuCartas.append(imgCarta);
     imgCarta.classList.add("carta");
+    smalls[1].innerText = ptsAcum;
+    setTimeout(() => {
+    }, 1000)
   } while (ptsAcum < pjeMinimo && ptsAcum <= 21);
   setTimeout(() => {
     ptsAcum === pjeMinimo ? alert("Nadie gana!")
@@ -119,7 +123,9 @@ btnPedir.addEventListener("click", () => {
   imgCarta.src = `./assets/imagenes/cartas/${carta}.png`;
   divJugadorCartas.append(imgCarta);
   imgCarta.classList.add("carta");
-  smalls[0].innerText = ptsAcum;
+  setTimeout(() => {
+    smalls[0].innerText = ptsAcum;
+  }, 80);
   verificacion(ptsAcum);
 })
 
