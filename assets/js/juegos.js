@@ -36,6 +36,7 @@ const divJugadorCartas = document.querySelector("#jugador-cartas"),
 // ----------------------------------------- crear y mezclar mazo de cartas
 const crearDeck = () => {
   // ---------------- criterio propio 3 for
+  deck=[];
   for (let tipo of tipos) {
     for (let i = 2; i <= 10; i++) {
       deck.push(i + tipo)
@@ -82,19 +83,12 @@ const verificacion = (ptsAcum) => {
   if (ptsAcum > 21) {
     ((btnPedir.disabled = true),
       btnDetener.disabled = true,
-      turnoCompu(0),
-      (smalls[0].innerText = "Te Pasaste!"))
+      turnoCompu(0)
+    )
   }
 
 
 }
-
-
-// verificacion(sumaPuntos(valorCarta(pedirCarta())))
-// verificacion(sumaPuntos(valorCarta(pedirCarta())))
-// verificacion(sumaPuntos(valorCarta(pedirCarta())))
-// verificacion(sumaPuntos(valorCarta(pedirCarta())))
-// verificacion(sumaPuntos(valorCarta(pedirCarta())))
 
 // ----------- TURNO COMPU --------------------
 
@@ -105,7 +99,7 @@ const turnoCompu = (pjeMinimo) => {
     const puntajeCarta = valorCarta(carta);
     const ptsAcum = sumaPuntos(puntajeCarta);
     smalls[1].innerText = ptsAcum;
-    
+
     const imgCarta = document.createElement("img");
     imgCarta.src = `./assets/imagenes/cartas/${carta}.png`;
     divCompuCartas.append(imgCarta);
@@ -113,11 +107,15 @@ const turnoCompu = (pjeMinimo) => {
 
 
 
-  } while (ptsAcum < pjeMinimo && ptsAcum < 21);
+  } while (ptsAcum < pjeMinimo && ptsAcum <= 21);
+  setTimeout(() => {
+    ptsAcum === pjeMinimo ? alert("Nadie gana!")
+      : (ptsAcum <= 21 ? (alert("Gana COMPU"),
+                          gCompu++)
+        : alert("Felicitaciones! Ganaste"),
+          gJug++);
+  }, 100)
 
-  ptsAcum <= 21 ? smalls[1].innerText = "Gana COMPU!"
-    : smalls[1].innerText = "Gana Jugador 1";
-  // btnDetener.disabled=true;
 
 }
 
@@ -141,17 +139,20 @@ btnPedir.addEventListener("click", () => {
 })
 
 btnNuevo.addEventListener("click", () => {
-  deck = [];
   smalls[0].innerText = 0;
   smalls[1].innerText = 0;
   ptsAcum = 0;
   btnPedir.disabled = false;
   btnDetener.disabled = false;
-  crearDeck()
+  crearDeck();
+  console.log(deck.length)
+  divCompuCartas.innerHTML = "";
+  divJugadorCartas.innerText="";
 })
 
 btnDetener.addEventListener("click", () => {
   btnDetener.disabled = true;
   btnPedir.disabled = true;
   turnoCompu(ptsAcum);
+
 })
