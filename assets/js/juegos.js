@@ -14,8 +14,7 @@
 let deck = [];
 const tipos = ["C", "H", "S", "D"]
 const especiales = ["A", "J", "Q", "K"]
-let ptsAcum = 0,
-  ptsComputadora = 0;
+let ptsAcum = 0;
 
 
 // referencias HTML
@@ -36,7 +35,7 @@ const divJugadorCartas = document.querySelector("#jugador-cartas"),
 // ----------------------------------------- crear y mezclar mazo de cartas
 const crearDeck = () => {
   // ---------------- criterio propio 3 for
-  deck=[];
+  deck = [];
   for (let tipo of tipos) {
     for (let i = 2; i <= 10; i++) {
       deck.push(i + tipo)
@@ -61,7 +60,6 @@ const pedirCarta = () => {
   } else {
     console.log("El mazo esta vacio")
   }
-
 }
 
 // ---------------------------- darle un valor a la carta
@@ -86,8 +84,6 @@ const verificacion = (ptsAcum) => {
       turnoCompu(0)
     )
   }
-
-
 }
 
 // ----------- TURNO COMPU --------------------
@@ -99,24 +95,18 @@ const turnoCompu = (pjeMinimo) => {
     const puntajeCarta = valorCarta(carta);
     const ptsAcum = sumaPuntos(puntajeCarta);
     smalls[1].innerText = ptsAcum;
-
     const imgCarta = document.createElement("img");
     imgCarta.src = `./assets/imagenes/cartas/${carta}.png`;
     divCompuCartas.append(imgCarta);
     imgCarta.classList.add("carta");
-
-
-
   } while (ptsAcum < pjeMinimo && ptsAcum <= 21);
   setTimeout(() => {
     ptsAcum === pjeMinimo ? alert("Nadie gana!")
       : (ptsAcum <= 21 ? (alert("Gana COMPU"),
-                          gCompu++)
+        gCompu++)
         : alert("Felicitaciones! Ganaste"),
-          gJug++);
+        gJug++);
   }, 100)
-
-
 }
 
 
@@ -125,17 +115,12 @@ btnPedir.addEventListener("click", () => {
   const carta = pedirCarta();
   const puntajeCarta = valorCarta(carta);
   const ptsAcum = sumaPuntos(puntajeCarta);
-
-
-
   const imgCarta = document.createElement("img");
   imgCarta.src = `./assets/imagenes/cartas/${carta}.png`;
   divJugadorCartas.append(imgCarta);
   imgCarta.classList.add("carta");
   smalls[0].innerText = ptsAcum;
-
   verificacion(ptsAcum);
-
 })
 
 btnNuevo.addEventListener("click", () => {
@@ -147,7 +132,7 @@ btnNuevo.addEventListener("click", () => {
   crearDeck();
   console.log(deck.length)
   divCompuCartas.innerHTML = "";
-  divJugadorCartas.innerText="";
+  divJugadorCartas.innerText = "";
 })
 
 btnDetener.addEventListener("click", () => {
