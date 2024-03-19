@@ -14,7 +14,7 @@
 let deck = [];
 const tipos = ["C", "H", "S", "D"]
 const especiales = ["A", "J", "Q", "K"]
-let ptsAcum = 0;
+let ptsAcum = 0, gCompu=0, gJug=0;
 
 
 // referencias HTML
@@ -95,22 +95,25 @@ const turnoCompu = (pjeMinimo) => {
     const puntajeCarta = valorCarta(carta);
     const ptsAcum = sumaPuntos(puntajeCarta);
 
-
     const imgCarta = document.createElement("img");
-    imgCarta.src = `./assets/imagenes/cartas/${carta}.png`;
-    divCompuCartas.append(imgCarta);
+    
     imgCarta.classList.add("carta");
-    smalls[1].innerText = ptsAcum;
+    imgCarta.src = `./assets/imagenes/cartas/${carta}.png`;
+    divCompuCartas.append(imgCarta);    
+    
     setTimeout(() => {
-    }, 1000)
+      smalls[1].innerText = ptsAcum;
+    }, 200);
+
   } while (ptsAcum < pjeMinimo && ptsAcum <= 21);
+
   setTimeout(() => {
     ptsAcum === pjeMinimo ? alert("Nadie gana!")
       : (ptsAcum <= 21 ? (alert("Gana COMPU"),
         gCompu++)
         : alert("Felicitaciones! Ganaste"),
         gJug++);
-  }, 100)
+  }, 500)
 }
 
 
@@ -125,7 +128,7 @@ btnPedir.addEventListener("click", () => {
   imgCarta.classList.add("carta");
   setTimeout(() => {
     smalls[0].innerText = ptsAcum;
-  }, 80);
+  }, 200);
   verificacion(ptsAcum);
 })
 
@@ -136,7 +139,6 @@ btnNuevo.addEventListener("click", () => {
   btnPedir.disabled = false;
   btnDetener.disabled = false;
   crearDeck();
-  console.log(deck.length)
   divCompuCartas.innerHTML = "";
   divJugadorCartas.innerText = "";
 })
