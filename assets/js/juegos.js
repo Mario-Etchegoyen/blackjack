@@ -14,7 +14,8 @@
 let deck = [];
 const tipos = ["C", "H", "S", "D"]
 const especiales = ["A", "J", "Q", "K"]
-let ptsAcum = 0, gCompu=0, gJug=0;
+let ptsAcum = 0;
+const manosGanadas=[];// marcan la # de juegos ganados por cada uno
 
 
 // referencias HTML
@@ -67,7 +68,7 @@ const valorCarta = (carta) => {
   let puntos = 0;
   const valor = carta.substring(0, carta.length - 1) // carta viene con "10d" y lo convierte en un arreglo para guardar hasta el indice indicado
   puntos = (((isNaN(valor)) ?
-    (valor === "A") ? puntos = puntos + 11 : puntos = puntos + 10
+    ((valor === "A") ? puntos = puntos + 11 : puntos = puntos + 10)
     : puntos = parseInt(valor, 10) + puntos));
   return puntos
 }
@@ -96,11 +97,11 @@ const turnoCompu = (pjeMinimo) => {
     const ptsAcum = sumaPuntos(puntajeCarta);
 
     const imgCarta = document.createElement("img");
-    
+
     imgCarta.classList.add("carta");
     imgCarta.src = `./assets/imagenes/cartas/${carta}.png`;
-    divCompuCartas.append(imgCarta);    
-    
+    divCompuCartas.append(imgCarta);
+
     setTimeout(() => {
       smalls[1].innerText = ptsAcum;
     }, 200);
@@ -110,9 +111,9 @@ const turnoCompu = (pjeMinimo) => {
   setTimeout(() => {
     ptsAcum === pjeMinimo ? alert("Nadie gana!")
       : (ptsAcum <= 21 ? (alert("Gana COMPU"),
-        gCompu++)
+        manosGanadas[0]++)
         : alert("Felicitaciones! Ganaste"),
-        gJug++);
+        manosGanadas[1]++);
   }, 500)
 }
 
