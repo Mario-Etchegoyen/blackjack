@@ -15,7 +15,7 @@ let deck = [];
 const tipos = ["C", "H", "S", "D"]
 const especiales = ["A", "J", "Q", "K"]
 let ptsAcum = 0;
-const manosGanadas=[];// marcan la # de juegos ganados por cada uno
+const manosGanadas = [];// marcan la # de juegos ganados por cada uno
 
 
 // referencias HTML
@@ -28,6 +28,7 @@ const smalls = document.querySelectorAll("small");
 
 const divJugadorCartas = document.querySelector("#jugador-cartas"),
   divCompuCartas = document.querySelector("#computadora-cartas");
+
 
 
 
@@ -50,7 +51,7 @@ const crearDeck = () => {
 
   return deck
 }
-
+crearDeck();
 
 // ---------------------------------------- para tomar una carta
 
