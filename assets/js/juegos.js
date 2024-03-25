@@ -40,8 +40,10 @@
       for (let especial of especiales) {
         deck.push(especial + tipo)
       }
-    }
-    return _.shuffle(deck)
+    } 
+    deck = _.shuffle(deck);
+    console.log(deck);
+    return deck;
   }
   // ---------------------------------------- para tomar una carta
   const pedirCarta = () => {
@@ -97,9 +99,9 @@
       imgCarta.src = `./assets/imagenes/cartas/${carta}.png`;
       divCompuCartas.append(imgCarta);
 
-      // setTimeout(() => {
-      //   smalls[1].innerText = ptsAcum;
-      // }, 200);
+      setTimeout(() => {
+        smalls[1].innerText = ptsAcum;
+      }, 200);
 
     } while (ptsAcum < pjeMinimo && ptsAcum <= 21);
 
@@ -148,7 +150,7 @@
   })
 
 
-})
+})()
 
 
 
