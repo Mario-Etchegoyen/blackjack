@@ -1,11 +1,14 @@
 (() => {
   "use strict"
+
+
   let deck = [];
   const tipos = ["C", "H", "S", "D"],
     especiales = ["A", "J", "Q", "K"]
   let ptsAcum = 0;
-  const manosGanadas = [],
-    puntosJugadores = [];// marcan la # de juegos ganados por cada uno
+  const manosGanadas = [];
+  
+  let puntosJugadores = [];// marcan la # de juegos ganados por cada uno
 
 
   // referencias HTML
@@ -19,14 +22,21 @@
   const divJugadorCartas = document.querySelector("#jugador-cartas"),
     divCompuCartas = document.querySelector("#computadora-cartas");
 
-  // computadora = jugador 0;
   const inicializarJuego = (cantidadJugadores = 1) => {
-    let i = 0;
-    do {
-      puntosJugadores.push[0];
-      i++;
-    } while (i <= cantidadJugadores)
     deck = crearDeck();
+    console.log(deck);
+    puntosJugadores = [];
+    for (let i = 0; i <= cantidadJugadores; i++)
+      puntosJugadores.push[0];
+
+    smalls[0].innerText = 0;
+    smalls[1].innerText = 0;
+
+    divCompuCartas.innerHTML = "";
+    divJugadorCartas.innerText = "";
+
+    btnPedir.disabled = false;
+    btnDetener.disabled = false;
   }
 
   // ----------------------------------------- crear y mezclar mazo de cartas
@@ -40,9 +50,8 @@
       for (let especial of especiales) {
         deck.push(especial + tipo)
       }
-    } 
+    }
     deck = _.shuffle(deck);
-    console.log(deck);
     return deck;
   }
   // ---------------------------------------- para tomar una carta
@@ -56,12 +65,11 @@
 
   // ---------------------------- darle un valor a la carta
   const valorCarta = (carta) => {
-    let puntos = 0;
     const valor = carta.substring(0, carta.length - 1);
-    puntos = (((isNaN(valor)) ?
-      ((valor === "A") ? puntos = puntos + 11 : puntos = puntos + 10)
-      : puntos = parseInt(valor, 10) + puntos));
-    return puntos
+    return ((isNaN(valor)) ?
+      (valor === "A") ? 11 : 10
+      : valor * 1);
+
   }
 
   const sumaPuntos = (puntaje = 0) => {
@@ -87,6 +95,8 @@
 
   // ----------- TURNO COMPU --------------------
   const turnoCompu = (pjeMinimo) => {
+    btnDetener.disabled = true;
+    btnPedir.disabled = true;
     ptsAcum = 0;
     do {
       const carta = pedirCarta();
@@ -101,7 +111,7 @@
 
       setTimeout(() => {
         smalls[1].innerText = ptsAcum;
-      }, 200);
+      }, 100);
 
     } while (ptsAcum < pjeMinimo && ptsAcum <= 21);
 
@@ -111,7 +121,7 @@
           manosGanadas[0]++)
           : alert("Felicitaciones! Ganaste"),
           manosGanadas[1]++);
-    }, 500)
+    }, 200)
   }
 
 
@@ -132,21 +142,11 @@
   })
 
   btnNuevo.addEventListener("click", () => {
-    smalls[0].innerText = 0;
-    smalls[1].innerText = 0;
-    ptsAcum = 0;
-    btnPedir.disabled = false;
-    btnDetener.disabled = false;
-    crearDeck();
-    divCompuCartas.innerHTML = "";
-    divJugadorCartas.innerText = "";
+    inicializarJuego();
   })
 
   btnDetener.addEventListener("click", () => {
-    btnDetener.disabled = true;
-    btnPedir.disabled = true;
     turnoCompu(ptsAcum);
-
   })
 
 
