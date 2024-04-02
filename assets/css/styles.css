@@ -1,0 +1,36 @@
+html,
+body {
+  margin: 0px;
+  background-color: #2f4f30;
+  color: white;
+  height: 100dvh;
+}
+
+.titulo {
+  text-align: center;
+  background-color: black;
+  padding: 1dvw;
+  font-size: 2dvw;
+}
+
+.carta {
+  width: 5.8dvw;
+  min-width:75px;
+  height:auto;
+  max-height: 26dvh;
+  margin-left: -3dvw;
+  border-radius: 0.4rem;
+}
+
+#jugador-cartas,
+#computadora-cartas {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  min-width: 350px;
+  margin: 2dvh auto;
+  background-image: url(../imagenes/Imagen5.png);
+  background-size: cover;
+  min-height: 26dvh;
+}

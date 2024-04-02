@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mario Blackjack</title>
+  <link rel="icon" href="./assets/imagenes/Carnet sin fondo.png" type="image/x-icon">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="./assets/css/styles.css">
+</head>
+
+<body>
+  <header class="titulo">
+    Blackjack
+  </header>
+
+  <main>
+
+    <div id="divBotones" class=" mt-2 mb-2 col text-center">
+
+      <button id="btnNuevo" class="btn btn-outline-danger font-weight-bold">Nueva Mano</button>
+      <button id="btnPedir" class="btn btn-outline-primary font-weight-bold">Pedir Carta</button>
+      <button id="btnDetener" class="btn btn-outline-primary font-weight-bold">Detener</button>
+    </div>
+      <div class=" text-center ">
+        <div class="col ">
+          <h1 class="bg-info h3 p-2">Jugador 1 - <small
+              class="text-white bg-dark font-weight-bold rounded p-1 ">0</small></h1>
+          <div id="jugador-cartas">
+          </div>
+        </div>
+      </div>
+      <div class=" text-center ">
+        <div class=" text-center ">
+          <div class="col">
+            <h1 class="bg-info pb-1 h3 p-2">Computadora - <small
+                class="text-white bg-dark font-weight-bold rounded p-1 ">0</small></h1>
+            <div id="computadora-cartas">
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+  </main>
+
+  <script src="./assets/js/underscore-min.js"></script>
+  <script src="./assets/js/juegos-min.js"></script>
+</body>
+
+</html>
